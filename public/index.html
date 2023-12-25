@@ -3,9 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello, World!</title>
+    <title>Your HTML Page</title>
+    <textarea
+      style="width: 720px; height: 600px"
+      placeholder="baga aci"
+    ></textarea>
+    <br />
+    <button style="width: 720px; height: 80px">SEND TO MQTT</button>
+    <div style="width: 720px; text-align: center"></div>
   </head>
   <body>
-    <h1>Hello, World!</h1>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      const text = document.getElementsByTagName("textarea")[0];
+      const button = document.getElementsByTagName("button")[0];
+      const servMsg = document.getElementsByTagName("div")[0];
+      button.addEventListener("click", sendToMqtt);
+
+      function sendToMqtt() {
+        axios
+          .post("/publish", { content: text.value })
+          .then((response) => {
+            servMsg.innerText = response.data.message;
+            console.log("Server response:", response.data.message);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
   </body>
 </html>
