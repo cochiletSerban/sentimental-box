@@ -1,0 +1,13 @@
+upgrade path
+    add pingback to mqtt topic to know if device is up
+    add timestamp to messages
+    custom webInterface for AP connection with custom error handling
+    add "printed" flag to eprom mem to print welcome/reconect to wifi 
+    only once and keep AP up just 3min to prevent watchdog issue
+    break reconection loop and feed watchdog  
+
+
+it should attempt to reconect to wifi if it takes more than 10m
+it should lunch wifiManager and wait a long time
+
+
